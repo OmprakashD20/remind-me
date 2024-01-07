@@ -2,26 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+::selection {
+  user-select: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.cl-internal-b3fm6y,
+.cl-internal-uyu30o {
+  @apply hidden;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.cl-formButtonPrimary {
+  @apply bg-gradient-to-r from-red-500 to-orange-500;
+}
+
+.cl-footerActionLink,
+.cl-dividerText {
+  @apply text-orange-600;
+}
+
+.cl-internal-g6a67s:focus {
+  @apply shadow-none;
+}
+
+.cl-footerActionLink:hover {
+  @apply text-orange-700;
+}
+
+.cl-internal-1jq1diu {
+  @apply hidden;
 }
