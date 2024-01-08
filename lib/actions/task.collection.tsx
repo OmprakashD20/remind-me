@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "../prisma";
+import { Task } from "@prisma/client";
 
 import { revalidatePath } from "next/cache";
 
@@ -12,7 +13,7 @@ type CreateTaskParams = {
   path: string;
 };
 
-type UpdateTaskStatusParams = {
+type SetStatusParams = {
   taskId: string;
   status: boolean;
   path: string;
@@ -45,11 +46,30 @@ export const createTask = async ({
   }
 };
 
+export const updateTask = async (task: Task, path: string) => {
+  try {
+    const updatedTask = await prisma.task.update({
+      where: {
+        id: task.id,
+      },
+      data: {
+        name: task.name,
+        description: task.description,
+        expiresAt: task.expiresAt,
+      },
+    });
+    revalidatePath(path);
+    return updatedTask;
+  } catch (error: any) {
+    throw new Error(`Error updating the task: ${error.message}`);
+  }
+};
+
 export const setTaskStatus = async ({
   taskId,
   status,
   path,
-}: UpdateTaskStatusParams) => {
+}: SetStatusParams) => {
   try {
     const task = await prisma.task.update({
       where: {

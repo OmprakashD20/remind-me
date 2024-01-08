@@ -1,8 +1,7 @@
 "use client";
 
-import { currentUser } from "@clerk/nextjs";
-import { Collection } from "@prisma/client";
-import { redirect, usePathname } from "next/navigation";
+import { Collection, Task } from "@prisma/client";
+import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon, ReloadIcon } from "@radix-ui/react-icons";
@@ -10,7 +9,7 @@ import { format } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { CollectionColor, CollectionColors } from "@/lib/constants";
-import { createTask } from "@/lib/actions/task.collection";
+import { createTask, updateTask } from "@/lib/actions/task.collection";
 
 import { TaskSchema, TaskSchemaType } from "@/validations/taskSchema";
 
@@ -46,10 +45,11 @@ interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
   collection: Collection;
-  userId: string;
+  task?: Task;
+  userId?: string;
 }
 
-const TaskForm = ({ open, setOpen, collection, userId }: Props) => {
+const TaskForm = ({ open, setOpen, collection, userId, task }: Props) => {
   //Toast
   const { toast } = useToast();
 
@@ -66,26 +66,31 @@ const TaskForm = ({ open, setOpen, collection, userId }: Props) => {
   const form = useForm<TaskSchemaType>({
     resolver: zodResolver(TaskSchema),
     defaultValues: {
+      name: task?.name,
+      description: task?.description,
+      expiresAt: task?.expiresAt ? new Date(task.expiresAt) : undefined,
       collectionId: collection.id,
     },
   });
 
   const handleSubmit = async (values: TaskSchemaType) => {
     try {
-      await createTask({
-        taskDetails: values,
-        userId: userId,
-        path,
-      });
+      task
+        ? await updateTask({ ...task, ...values }, path)
+        : await createTask({
+            taskDetails: values,
+            userId: userId!,
+            path,
+          });
       handleDialog(false);
       toast({
         title: "Success",
-        description: "Task created successfully!!",
+        description: `${task ? "Task updated" : "Task created"} successfully!`,
       });
     } catch (error: any) {
       toast({
         title: "Error",
-        description: "Cannot create task",
+        description: `Cannot ${task ? "update" : "create"} task`,
         variant: "destructive",
       });
       console.log(error.message);
@@ -97,7 +102,11 @@ const TaskForm = ({ open, setOpen, collection, userId }: Props) => {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex gap-2">
-            Add task to collection:
+            {`${
+              task
+                ? "Edit your task in the collection:"
+                : "Add task to collection:"
+            }`}
             <span
               className={cn(
                 "p-px bg-clip-text text-transparent",
@@ -107,10 +116,12 @@ const TaskForm = ({ open, setOpen, collection, userId }: Props) => {
               {collection.name}
             </span>
           </DialogTitle>
-          <DialogDescription>
-            Add a task to your collection. You can add as many tasks as you want
-            to a collection.
-          </DialogDescription>
+          {task ? null : (
+            <DialogDescription>
+              Add a task to your collection. You can add as many tasks as you
+              want to a collection.
+            </DialogDescription>
+          )}
         </DialogHeader>
         <div className="gap-4 py-4">
           <Form {...form}>
@@ -199,7 +210,7 @@ const TaskForm = ({ open, setOpen, collection, userId }: Props) => {
             )}
             onClick={form.handleSubmit(handleSubmit)}
           >
-            Confirm
+            {`${task ? "Update" : "Confirm"}`}
             {form.formState.isSubmitting && (
               <ReloadIcon className="animate-spin h-4 w-4 ml-2" />
             )}

@@ -3,19 +3,13 @@
 @tailwind utilities;
 
 ::selection {
-  user-select: none;
+  @apply bg-orange-500 text-white;
 }
 
 /* Clerk Components Theme */
 
 .cl-card {
-  @apply dark:bg-neutral-900;
-}
-
-@media (max-width: 480px) {
-  .cl-card {
-    @apply mt-3;
-  }
+  @apply dark:bg-neutral-900 my-0;
 }
 
 .cl-headerTitle,
@@ -27,7 +21,9 @@
 .cl-internal-rscu79,
 .cl-internal-of57g,
 .cl-internal-3vf5mz,
-.cl-internal-1dqcph {
+.cl-internal-1dqcph,
+.cl-fileDropAreaHint,
+.cl-fileDropAreaFooterHint {
   @apply dark:text-white;
 }
 .cl-headerSubtitle,
@@ -43,17 +39,20 @@
   @apply dark:text-white text-neutral-900;
 }
 
-.cl-dividerLine {
+.cl-dividerLine,
+.cl-fileDropAreaIconBox {
   @apply dark:bg-neutral-600;
 }
 
-.cl-socialButtonsBlockButton {
+.cl-socialButtonsBlockButton,
+.cl-fileDropAreaBox {
   @apply dark:border-neutral-500 dark:bg-neutral-800;
 }
 
 .cl-socialButtonsBlockButtonArrow,
 .cl-userButtonPopoverActionButtonIcon,
-.cl-navbarButtonIcon {
+.cl-navbarButtonIcon,
+.cl-fileDropAreaIcon {
   @apply dark:text-neutral-300;
 }
 
@@ -85,7 +84,8 @@
 .cl-profileSectionPrimaryButton__emailAddresses:hover,
 .cl-profileSectionPrimaryButton__connectedAccounts:hover,
 .cl-profileSectionPrimaryButton__password:hover,
-.cl-formButtonReset:hover {
+.cl-formButtonReset:hover,
+.cl-fileDropAreaButtonPrimary:hover {
   @apply bg-orange-100 dark:bg-transparent;
 }
 
@@ -93,7 +93,8 @@
 .cl-dividerText,
 .cl-internal-enrgi0,
 .cl-internal-1w85uqz,
-.cl-avatarImageActionsUpload {
+.cl-avatarImageActionsUpload,
+.cl-fileDropAreaButtonPrimary {
   @apply text-orange-600;
 }
 
@@ -113,7 +114,8 @@
 .cl-formButtonReset:focus,
 .cl-internal-iqmees:focus,
 .cl-internal-jqrj10:focus,
-.cl-internal-1dqcph:focus {
+.cl-internal-1dqcph:focus,
+.cl-fileDropAreaButtonPrimary:focus {
   @apply shadow-none;
 }
 

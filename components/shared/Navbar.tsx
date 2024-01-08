@@ -27,7 +27,7 @@ const Navbar = () => {
     <nav className="w-full flex items-center justify-between p-4 sm:px-8 h-[60px]">
       <Logo />
       <div className="flex items-center gap-4">
-        <UserButton afterSignOutUrl="/" />
+        <UserButton afterSignOutUrl="/sign-in" />
         {isMobile ? (
           <Popover>
             <PopoverTrigger asChild>

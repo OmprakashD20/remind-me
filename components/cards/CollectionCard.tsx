@@ -116,7 +116,9 @@ const CollectionCard = ({ collection, userId }: Props) => {
               CollectionColors[collection.color as CollectionColor]
             )}
           >
-            <span className="text-white font-medium tracking-wide text-base">{collection.name}</span>
+            <span className="text-white font-medium tracking-wide text-base">
+              {collection.name}
+            </span>
             {!isExpanded && <CaretDownIcon className="h-6 w-6" />}
             {isExpanded && <CaretUpIcon className="h-6 w-6" />}
           </Button>
@@ -127,11 +129,7 @@ const CollectionCard = ({ collection, userId }: Props) => {
               <Progress className={cn("rounded-none")} value={progress} />
               <div className="p-4 gap-3 flex flex-col">
                 {tasks.map((task) => (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    collectionColor={collection.color as CollectionColor}
-                  />
+                  <TaskCard key={task.id} task={task} collection={collection} />
                 ))}
               </div>
             </>
