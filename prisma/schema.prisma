@@ -3,17 +3,30 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Collection {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @map("_id")
   name      String
   userId    String
   color     String
   createdAt DateTime @default(now())
+  tasks     Task[]
 
   //This restricts the user from creating more than one collection with the same name
   @@unique([name, userId])
+}
+
+model Task {
+  id           String     @id @default(uuid()) @map("_id")
+  name         String
+  description  String
+  done         Boolean    @default(false)
+  userId       String
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  expiresAt    DateTime?
+  createdAt    DateTime   @default(now())
 }

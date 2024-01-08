@@ -1,17 +1,24 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nova_Square } from "next/font/google";
+
 import "./globals.css";
 
-import { dark } from "@clerk/themes";
-
-import Navbar from "@/components/shared/Navbar";
-import { Separator } from "@/components/ui/separator";
-import ThemeProvider from "@/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
+
+import ThemeProvider from "@/providers/ThemeProvider";
+
+import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/shared/Navbar";
+
+const nova_square = Nova_Square({
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Remind Me",
@@ -20,24 +27,20 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
+    <ClerkProvider>
       <html
         lang="en"
-        className={cn(inter.className, "dark")}
+        className={cn(nova_square.className, "dark")}
         style={{
           colorScheme: "dark",
         }}
       >
         <body>
           <ThemeProvider>
-            <div className="min-h-screen w-full flex flex-col items-center dark:bg-black">
+            <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-neutral-950">
               <Navbar />
               <Separator />
-              <main className="w-full dark:bg-neutral-950 flex flex-grow items-center justify-center">
+              <main className="w-full h-full dark:bg-neutral-950 flex flex-grow items-center justify-center">
                 {children}
                 <Toaster />
               </main>

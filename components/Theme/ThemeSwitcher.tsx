@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { SunIcon, MoonIcon, DesktopIcon } from "@radix-ui/react-icons";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();

@@ -6,6 +6,65 @@
   user-select: none;
 }
 
+/* Clerk Components Theme */
+
+.cl-card {
+  @apply dark:bg-neutral-900;
+}
+
+@media (max-width: 480px) {
+  .cl-card {
+    @apply mt-3;
+  }
+}
+
+.cl-headerTitle,
+.cl-socialButtonsBlockButtonText,
+.cl-formFieldLabel,
+.cl-internal-1ho4xv,
+.cl-navbarButton,
+.cl-profileSectionTitleText,
+.cl-internal-rscu79,
+.cl-internal-of57g,
+.cl-internal-3vf5mz,
+.cl-internal-1dqcph {
+  @apply dark:text-white;
+}
+.cl-headerSubtitle,
+.cl-footerActionText,
+.cl-userPreviewSecondaryIdentifier,
+.cl-userButtonPopoverActionButtonText,
+.cl-userButtonPopoverActionButtonText,
+.cl-internal-fqx4fd {
+  @apply dark:text-neutral-400;
+}
+
+.cl-formButtonReset {
+  @apply dark:text-white text-neutral-900;
+}
+
+.cl-dividerLine {
+  @apply dark:bg-neutral-600;
+}
+
+.cl-socialButtonsBlockButton {
+  @apply dark:border-neutral-500 dark:bg-neutral-800;
+}
+
+.cl-socialButtonsBlockButtonArrow,
+.cl-userButtonPopoverActionButtonIcon,
+.cl-navbarButtonIcon {
+  @apply dark:text-neutral-300;
+}
+
+.cl-internal-xkj3jj {
+  @apply text-neutral-500;
+}
+
+.cl-formFieldInput {
+  @apply dark:bg-neutral-800 dark:border dark:border-neutral-500 dark:text-white;
+}
+
 .cl-internal-b3fm6y,
 .cl-internal-uyu30o {
   @apply hidden;
@@ -15,16 +74,58 @@
   @apply bg-gradient-to-r from-red-500 to-orange-500;
 }
 
+.cl-badge {
+  @apply text-orange-600 bg-orange-100;
+}
+
+.cl-internal-16pk7q8 {
+  @apply text-black;
+}
+
+.cl-profileSectionPrimaryButton__emailAddresses:hover,
+.cl-profileSectionPrimaryButton__connectedAccounts:hover,
+.cl-profileSectionPrimaryButton__password:hover,
+.cl-formButtonReset:hover {
+  @apply bg-orange-100 dark:bg-transparent;
+}
+
 .cl-footerActionLink,
-.cl-dividerText {
+.cl-dividerText,
+.cl-internal-enrgi0,
+.cl-internal-1w85uqz,
+.cl-avatarImageActionsUpload {
   @apply text-orange-600;
 }
 
-.cl-internal-g6a67s:focus {
+.cl-internal-g6a67s:focus,
+.cl-socialButtonsBlockButton:focus,
+.cl-internal-15amzqo:focus,
+.cl-formFieldInput:focus,
+.cl-internal-1dbixsh:focus,
+.cl-internal-1w85uqz:focus,
+.cl-internal-2lpmmf:focus,
+.cl-internal-1lxo206:focus,
+.cl-internal-1bwcj81:focus,
+.cl-profileSectionContent:focus,
+.cl-internal-1i0alb8:focus,
+.cl-avatarImageActionsUpload:focus,
+.cl-avatarImageActionsRemove:focus,
+.cl-formButtonReset:focus,
+.cl-internal-iqmees:focus,
+.cl-internal-jqrj10:focus,
+.cl-internal-1dqcph:focus {
   @apply shadow-none;
 }
 
-.cl-footerActionLink:hover {
+.cl-formFieldInput__signOutOfOtherSessions {
+  @apply accent-orange-600 text-white;
+}
+
+.cl-footerActionLink:hover,
+.cl-internal-1w85uqz:active,
+.cl-avatarImageActionsUpload:active,
+.cl-avatarImageActionsRemove:focus,
+.cl-formFieldInfoText {
   @apply text-orange-700;
 }
 

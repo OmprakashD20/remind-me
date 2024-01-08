@@ -5,7 +5,6 @@ import prisma from "../prisma";
 import { revalidatePath } from "next/cache";
 
 import { CollectionSchemaType } from "@/validations/collectionSchema";
-import path from "path";
 
 type CreateCollectionParams = {
   collectionDetails: CollectionSchemaType;
@@ -34,15 +33,32 @@ export const createCollection = async ({
 };
 
 //Get Collection
-export const getCollection = async (userId: string) => {
+export const getCollections = async (userId: string) => {
   try {
     const collection = await prisma.collection.findMany({
       where: {
         userId: userId,
       },
+      include: {
+        tasks: true,
+      },
     });
     return collection;
   } catch (error: any) {
     throw new Error(`Failed to get user's collection: ${error.message}`);
+  }
+};
+
+//Delete Collection
+export const deleteCollection = async (collectionId: string, path: string) => {
+  try {
+    await prisma.collection.delete({
+      where: {
+        id: collectionId,
+      },
+    });
+    revalidatePath(path);
+  } catch (error: any) {
+    throw new Error(`Failed to delete collection: ${error.message}`);
   }
 };

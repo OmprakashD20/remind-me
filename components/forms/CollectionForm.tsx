@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { usePathname } from "next/navigation";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -41,10 +42,9 @@ import {
   CollectionSchemaType,
 } from "@/validations/collectionSchema";
 import { Separator } from "../ui/separator";
-import { ReloadIcon } from "@radix-ui/react-icons";
 
-const CollectionSheet = ({ userId }: { userId: string }) => {
-  //Sheet Open State
+const CollectionForm = ({ userId }: { userId: string }) => {
+  //Sheet state
   const [open, setOpen] = useState(false);
   const handleSheetOpen = (open: boolean) => {
     setOpen(open);
@@ -57,7 +57,7 @@ const CollectionSheet = ({ userId }: { userId: string }) => {
   //Pathname
   const path = usePathname();
 
-  //Collection Form
+  //Collection form
   const form = useForm<CollectionSchemaType>({
     resolver: zodResolver(CollectionSchema),
     defaultValues: {},
@@ -77,7 +77,7 @@ const CollectionSheet = ({ userId }: { userId: string }) => {
         description: "Failed to create collection!",
         variant: "destructive",
       });
-      console.log(`Failed to create collection: ${error.message}`);
+      console.log(error.message);
     }
   };
 
@@ -187,4 +187,4 @@ const CollectionSheet = ({ userId }: { userId: string }) => {
   );
 };
 
-export default CollectionSheet;
+export default CollectionForm;
