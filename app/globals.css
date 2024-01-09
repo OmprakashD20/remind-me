@@ -23,9 +23,22 @@
 .cl-internal-3vf5mz,
 .cl-internal-1dqcph,
 .cl-fileDropAreaHint,
-.cl-fileDropAreaFooterHint {
+.cl-fileDropAreaFooterHint,
+.cl-formFieldSuccessText,
+.cl-identityPreviewText,
+.cl-formHeaderTitle,
+.cl-formHeaderSubtitle,
+.cl-otpCodeFieldInput,
+.cl-breadcrumbsItem,
+.cl-breadcrumbsItemDivider,
+.cl-internal-l1ab9q {
   @apply dark:text-white;
 }
+
+.cl-otpCodeFieldInput {
+  @apply dark:border-neutral-400;
+}
+
 .cl-headerSubtitle,
 .cl-footerActionText,
 .cl-userPreviewSecondaryIdentifier,
@@ -52,7 +65,8 @@
 .cl-socialButtonsBlockButtonArrow,
 .cl-userButtonPopoverActionButtonIcon,
 .cl-navbarButtonIcon,
-.cl-fileDropAreaIcon {
+.cl-fileDropAreaIcon,
+.cl-formFieldInputShowPasswordIcon {
   @apply dark:text-neutral-300;
 }
 
@@ -94,7 +108,9 @@
 .cl-internal-enrgi0,
 .cl-internal-1w85uqz,
 .cl-avatarImageActionsUpload,
-.cl-fileDropAreaButtonPrimary {
+.cl-fileDropAreaButtonPrimary,
+.cl-formResendCodeLink,
+.cl-formFieldAction {
   @apply text-orange-600;
 }
 
@@ -115,7 +131,10 @@
 .cl-internal-iqmees:focus,
 .cl-internal-jqrj10:focus,
 .cl-internal-1dqcph:focus,
-.cl-fileDropAreaButtonPrimary:focus {
+.cl-fileDropAreaButtonPrimary:focus,
+.cl-formResendCodeLink:focus,
+.cl-otpCodeFieldInput:focus,
+.cl-formFieldAction:focus {
   @apply shadow-none;
 }
 
@@ -125,6 +144,9 @@
 
 .cl-footerActionLink:hover,
 .cl-internal-1w85uqz:active,
+.cl-formFieldAction:active,
+.cl-formFieldAction:hover,
+.cl-formResendCodeLink:active,
 .cl-avatarImageActionsUpload:active,
 .cl-avatarImageActionsRemove:focus,
 .cl-formFieldInfoText {

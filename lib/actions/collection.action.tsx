@@ -32,7 +32,7 @@ export const createCollection = async ({
   }
 };
 
-//Get Collection
+//Get Collections
 export const getCollections = async (userId: string) => {
   try {
     const collection = await prisma.collection.findMany({
